@@ -8,7 +8,7 @@ from sqlalchemy import (
 from datetime import datetime
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_URL = f"postgresql://postgres:{DB_PASSWORD}@localhost:5433/fraud_detection"
-engine = create_engine(DB_URL, echo=False)  # echo=False now that you trust it works
+engine = create_engine(DB_URL, echo=False)  
 metadata = MetaData()
 # accounts 
 accounts = Table(
