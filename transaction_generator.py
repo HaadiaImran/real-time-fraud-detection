@@ -7,10 +7,10 @@ from kafka import KafkaProducer
  
 TOPIC = "transactions"
  
-# Connects to the Kafka broker running in Docker (localhost:9092 is the "host" listener we exposed)
+# Connects to the Kafka broker running in Docker 
 producer = KafkaProducer(
     bootstrap_servers="localhost:9092",
-    value_serializer=lambda v: json.dumps(v).encode("utf-8"),  # auto-convert dict -> JSON bytes
+    value_serializer=lambda v: json.dumps(v).encode("utf-8"),  # auto-convert 
 )
 ACCOUNTS = ["acc_001", "acc_002", "acc_003", "acc_004", "acc_005"]
 MERCHANTS = ["Daraz", "Foodpanda", "Careem", "Unknown POS", "Utility Bill"]
