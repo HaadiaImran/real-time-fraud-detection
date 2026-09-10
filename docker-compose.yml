@@ -22,7 +22,7 @@ services:
     image: postgres:16
     container_name: postgres_db
     ports:
-      - "5433:5432"   # host:container - 5433 avoids clashing with your existing local Postgres on 5432
+      - "5433:5432"   
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${DB_PASSWORD}
