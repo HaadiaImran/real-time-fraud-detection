@@ -49,7 +49,7 @@ def find_disagreements(df: pd.DataFrame) -> dict:
         # LR disagrees with the very labels it was trained on - borderline/ambiguous cases
         "LR disagreed with its own training label (Rules)": df[df["rule_flag"] != df["lr_prediction"]],
         # All three disagree  genuinely ambiguous transactions
-        "All three disagree": df[
+         "One model disagreed with the other two": df[
             (df["rule_flag"] != df["ml_anomaly"]) & (df["ml_anomaly"] != df["lr_prediction"])
         ],
     }
