@@ -42,11 +42,38 @@ anomalies = Table(
     Column("reason", String(255)),          # e.g. "unusually high amount"
     Column("detected_at", DateTime, default=datetime.utcnow),
 )
-
-
+# ML scores from Isolation Forest
+ml_scores = Table(
+    "ml_scores",
+    metadata,
+    Column("transaction_id", Integer, primary_key=True),
+    Column("anomaly_score", Numeric),
+    Column("ml_anomaly", Integer),
+)
+# ML scores from Logistic Regression
+ml_scores_lr = Table(
+    "ml_scores_lr",
+    metadata,
+    Column("transaction_id", Integer, primary_key=True),
+    Column("lr_prediction", Integer),
+    Column("lr_probability", Numeric),
+)
+# Combined comparison of Rules + Isolation Forest + Logistic Regression
+model_comparison = Table(
+    "model_comparison",
+    metadata,
+    Column("transaction_id", Integer, primary_key=True),
+    Column("account_id", String(50)),
+    Column("amount", Numeric(12, 2)),
+    Column("rule_flag", Integer),
+    Column("ml_anomaly", Integer),
+    Column("anomaly_score", Numeric),
+    Column("lr_prediction", Integer),
+    Column("lr_probability", Numeric),
+)
 def create_tables():
     metadata.create_all(engine)
-    print(">>> accounts, transactions, anomalies tables ready.")
+    print(">>> All database tables ready.")
 
 
 def sanity_check():
